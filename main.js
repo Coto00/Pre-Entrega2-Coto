@@ -23,13 +23,24 @@ let ProductoBuzo2 = new Producto("buzos", "gris", tallesBuzo2, "UrbanComfort", 5
 
 productos.push(ProductoBuzo1, ProductoBuzo2);
 
-let prendasBuscadas = prompt("¿Qué prenda buscas?").toLowerCase();
-const prendasFiltradasPorPrenda = productos.filter(producto => producto.prenda.includes(prendasBuscadas));
+console.log(productos)
+let opcionValida = false;
 
-if (prendasFiltradasPorPrenda.length > 0) {
-    let talleBuscado = prompt("¿Qué talle buscas?").toUpperCase();
-    const productosFiltrados = prendasFiltradasPorPrenda.filter(producto => producto.talle.includes(talleBuscado));
-    console.log(productosFiltrados);
-} else if(prendasFiltradasPorPrenda.length < 0){
-    console.log("No se encontro la prenda, porfavor eliga una opcion valida")
+while (!opcionValida) {
+    let prendasBuscadas = prompt("¿Qué prenda buscas?").toLowerCase();
+    const prendasFiltradas = productos.filter(producto => producto.prenda.includes(prendasBuscadas));
+
+    if (prendasFiltradas.length > 0) {
+        let talleBuscado = prompt("¿Qué talle buscas?").toUpperCase();
+        const productosFiltrados = prendasFiltradas.filter(producto => producto.talle.includes(talleBuscado));
+        
+        if (productosFiltrados.length > 0) {
+            console.log(productosFiltrados);
+            opcionValida = true;
+        } else {
+            console.log("No se encontraron productos con el talle especificado.");
+        }
+    } else {
+        console.log("No se encontro la prenda especificada o la prenda no es válida. Intenta de nuevo.");
+    }
 }
